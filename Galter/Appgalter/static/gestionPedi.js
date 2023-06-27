@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", function(){
         })
         .then(res => res.json())
         .then(datos =>{
-            console.log(datos)
-            consultarPedi();
+            console.log(datos) 
+            consultarPedi(); 
         })
         .catch(console.error)
     })
