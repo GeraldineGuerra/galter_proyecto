@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{% static 'gestionPedi.js' %}"></script>
+    <script src="{% static 'consultarPedi.js' %}"></script>
+    <title>Insertar Pedidos</title>
+</head>
+<body>
+
+    <h1>Insertar Pedidos</h1>
+
+    <form method="" action="" id="frmPedido">
+        {% csrf_token %}
+        <label for="id_pedido">Codigo Del Pedido</label>
+        <input type="text" name="codigo" id="codigo">
+
+        <label for="cliente_pedido">Cliente Del Pedido</label>
+        <input type="text" name="cliente" id="cliente">
+
+        <label for="producto_pedido">Producto Del Pedido</label>
+        <input type="text" name="producto" id="producto">
+
+        <label for="usuario_pedido">Usuario del Pedido</label>
+        <input type="text" name="usuario" id="usuario">
+
+
+        <label for="tiempo_pedido">Tiempo de Pedido</label>
+        <input type="text" name="tiempo" id="tiempo">
+
+
+        <label for="fecha_encargo">Fecha de encargo</label>
+        <input type="text" name="encargo" id="encargo">
+
+
+        <label for="fecha_entrega">Fecha De Encargo</label>
+        <input type="text" name="entrega" id="entrega">
+
+
+        <input type="submit" value="Guardar">
+    </form>
+
+    <table id="ConsultaPedido"></table>
+    
+    
+</body>
+</html>

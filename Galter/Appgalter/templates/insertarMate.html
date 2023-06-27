@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{% static 'gestionMate.js' %}"></script>
+    <script src="{% static 'consultarMate.js' %}"></script>
+    <title>Insertar Materiales</title>
+</head>
+<body>
+
+    <h1>Insertar Materiales</h1>
+
+    <form method="" action="" id="frmMaterial">
+        {% csrf_token %}
+        <label for="codi_mate">Codigo Del Material</label>
+        <input type="text" name="codigo" id="codigo">
+
+        <label for="nomb_mate">Nombre Del Material</label>
+        <input type="text" name="nombre" id="nombre">
+
+        <label for="cant_mate">Cantidad Del Material</label>
+        <input type="text" name="cantidad" id="cantidad">
+
+        <label for="proveedor_mate">Proveedor Del Material</label>
+        <input type="text" name="proveedor" id="proveedor">
+
+
+        <input type="submit" value="Guardar">
+    </form>
+
+    <table id="ConsultaMaterial"></table>
+    
+    
+</body>
+</html>

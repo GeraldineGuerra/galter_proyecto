@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="{% static 'gestionProd.js' %}"></script>
+        <script src="{% static 'consultarProd.js' %}"></script>
+        <title>Insertar Productos</title>
+    </head>
+<body>
+
+    <h1>Insertar Productos</h1>
+
+    <form method="" action="" id="frmProducto">
+        {% csrf_token %}
+        <label for="codi_prod">Codigo Del Producto</label>
+        <input type="text" name="codigo" id="codigo">
+
+        <label for="nomb_prod">Nombre Del Producto</label>
+        <input type="text" name="nombre" id="nombre">
+
+        <label for="tiempo_prod">Tiempo Del Producto</label>
+        <input type="text" name="tiempo" id="tiempo">
+
+        <label for="long_prod">Longitud Del Producto</label>
+        <input type="text" name="longitud" id="longitud">
+
+        <label for="material_prod">Material del Producto</label>
+        <input type="text" name="material" id="material">
+
+        <label for="prec_prod">Precio Del Producto</label>
+        <input type="text" name="precio" id="precio">
+
+
+
+        <input type="submit" value="Guardar">
+    </form>
+
+    <table id="ConsultaProducto"></table>
+    
+    
+</body>
+</html>
