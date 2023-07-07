@@ -1,0 +1,49 @@
+section{
+    width: 20%;
+    height: 100%;
+    margin-top: 40px;
+    margin-left: 40%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-left: 50px;
+    background-color: rgb(6, 6, 80);
+}
+img{
+    margin-top: 20px;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+a:hover{
+    color: white;
+    text-decoration: underline;
+}
+.botones{
+    margin-top: 70%;
+    margin-right: 100px;
+}
+.botons1{
+    width: 100%;
+    background: #ffffff;
+    border: none;
+    padding: 10px;
+    color: navy;
+    margin: 16px;
+    font-size: 16px;
+    border-radius: 20px;
+}
+.botons {
+    width: 100%;
+    background: navy;
+    border: none;
+    padding: 10px;
+    color: white;
+    margin: 16px ;
+    font-size: 16px;
+    border-color: rgb(255, 255, 255);
+    border-width: 3px; 
+    border-style: solid;
+    border-radius: 20px;
+}

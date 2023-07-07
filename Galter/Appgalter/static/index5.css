@@ -1,21 +1,7 @@
-.row{
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
-}
-
-
-.text1{
-    text-align: center;
-}
-
-
-.titu{
-    text-align: center;
-    background-color: rgb(237, 187, 255);
+body{
+    background-color: rgba(255, 0, 217, 0.388);
 }
 h1{
     text-align: center;
-    color: rgb(6, 190, 9);
+    color: rgb(134, 132, 13);
 }

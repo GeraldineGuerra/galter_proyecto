@@ -17,15 +17,33 @@ from django.views.generic import ListView,View
 
 
 
-# def principal (request):
-#     listarUsuarios=usuario.objects.all()
-#     return render(request,"index1.html",{'usu': listarUsuarios})
+def principal (request):
+    listarUsuario2=usuario.objects.all()
+    return render(request,"index1.html",{'usu': listarUsuario2})
 
 
 
-# class listarUsuarios(ListView):
-#     model=usuario
-#     template_name="index1.html"
+class listarUsuario1(ListView):
+    model=usuario
+    template_name="index1.html"
+
+
+class listarUsuario2(ListView):
+    def get(self,request):
+        datos=usuario.objects.all()
+        datos_Usuarios=[]
+        for i in datos:
+            datos_Usuarios.append({ 
+                'codi_usuario':i.codi_usuario,
+                'nombre_usuario':i.nombre_usuario,
+                'correo_usuario':i.correo_usuario,
+                'pass_usuario':i.pass_usuario,
+                'tipo_usuario':i.tipo_usuario
+            }) 
+        datosusu=list(datos)
+        #return JsonResponse(datos_Usuarios, safe=False)
+        return render(request, 'index1.html',{'datos': datosusu})
+    
 
     
 
@@ -264,8 +282,8 @@ class listarProducto(ListView):
                 'nomb_prod':i.nomb_prod,
                 'tiempo_prod':i.tiempo_prod,
                 'long_prod':i.long_prod,
-                'material_prod':i.long_prod,
-                'prec_prod':i.long_prod,
+                'material_prod':i.material_prod,
+                'prec_prod':i.prec_prod,
             }) 
         return JsonResponse(datos_producto, safe=False)
         
@@ -285,8 +303,8 @@ class InsertarProducto(View):
         long_prod = datos.get('long_prod')
         material_prod = datos.get('material_prod')
         prec_prod = datos.get('prec_prod')
-        mate=material.objects.create(codi_prod=codi_prod, nomb_prod=nomb_prod, tiempo_prod=tiempo_prod, long_prod=long_prod,material_prod=material_prod, prec_prod=prec_prod)
-        mate.save()
+        prod=producto.objects.create(codi_prod=codi_prod, nomb_prod=nomb_prod, tiempo_prod=tiempo_prod, long_prod=long_prod,material_prod=material_prod, prec_prod=prec_prod)
+        prod.save()
         return JsonResponse({'mensaje': 'datos guardados'})
 
 def formularioInsertarProd(request):
@@ -298,22 +316,22 @@ def formularioInsertarProd(request):
 
 
 
-class listarPedido(ListView):
+class listarpedido(ListView):
     def get(self,request):
         datos=pedido.objects.all()
         datos_pedido=[]
         for i in datos:
             datos_pedido.append({ 
                 'id_pedido':i.id_pedido,
-                'cliente_pedido':i.cliente_pedido,
-                'producto_pedido':i.producto_pedido,
-                'usuario_pedido':i.usuario_pedido,
+                'cliente_pedido':i.cliente_pedido.id_cliente,
+                'producto_pedido':i.producto_pedido.codi_prod,
+                'usuario_pedido':i.usuario_pedido.codi_usuario,
                 'tiempo_pedido':i.tiempo_pedido,
                 'fecha_encargo':i.fecha_encargo,
                 'fecha_entrega':i.fecha_entrega,
             }) 
         return JsonResponse(datos_pedido, safe=False)
-        
+
 
 class InsertarPedido(View):
     @method_decorator(csrf_exempt)

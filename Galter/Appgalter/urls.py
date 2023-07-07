@@ -1,18 +1,23 @@
 from django.urls import path
-from Appgalter.views import listarUsuarios, InsertarUsuario, InsertarCliente,listarClientes,listarProveedor,InsertarProveedor,listarMaterial,InsertarMaterial,InsertarProducto,listarProducto,listarPedido,InsertarPedido
-
+from Appgalter.views import listarUsuarios, InsertarUsuario, InsertarCliente,listarClientes,listarProveedor,InsertarProveedor,listarMaterial,InsertarMaterial,InsertarProducto,listarProducto,listarpedido,InsertarPedido
+from Appgalter.views import listarUsuario2
 from . import views
 
 
 
 urlpatterns = [
+    #mostrar con html
+    path('Usuario1', listarUsuario2.as_view(), name='Usuario1'),
+
+
+
     #listar
     path('Usuario', listarUsuarios.as_view(), name='Usuario'),
     path('Cliente', listarClientes.as_view(), name='Clientes'),
     path('Proveedor', listarProveedor.as_view(), name='Proveedor'),
     path('Material', listarMaterial.as_view(), name='Material'),
     path('Producto', listarProducto.as_view(), name='Prooducto'),
-    path('Pedido', listarPedido.as_view(), name='Pedido'),
+    path('Pedido', listarpedido.as_view(), name='Pedido'),
 
 
 
