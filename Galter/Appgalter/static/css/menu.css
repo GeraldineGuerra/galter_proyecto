@@ -1,0 +1,196 @@
+body {
+    background-color: rgb(3, 3, 51);
+    display: flex;
+}
+
+section{
+    margin-top: 30px;
+    margin-left: 5%;
+    width: 300px;
+    height: 800px;
+    background-image: url("../img/marek-piwnicki-fKjPKFeilfg-unsplash.jpg");
+    background-size: cover;
+    border-radius: 30px;
+}
+
+
+button{
+    background-color: black;
+    border-radius: 20px;
+    padding: 10px;
+    color: rgb(255, 255, 255);
+    margin-top: 10%;
+    font-size: 20px;
+}
+.imeg{
+    width: 150px ;
+    height: 100px;
+    margin-top: 90px;
+    margin-left: 80px;
+}
+.container {
+    width: 800px;
+    height: 800px;
+    /* background-color: rgba(7, 41, 213, 0.402); */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: 10%;
+}
+
+.listar_Prod,
+.listar_Mate,
+.calculadora,
+.opciones {
+    width: 300px;
+    height: 300px;
+    margin: 10px;
+    margin-top: 10%;
+    border-color: rgb(255, 255, 255);
+    border-width: 1px; 
+    border-style: solid;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+}
+
+.listar_Prod:hover,
+.listar_Mate:hover,
+.calculadora:hover,
+.opciones:hover {
+    transform: scale(1.1); 
+}
+
+
+
+.listar_Prod,
+.listar_Mate {
+    order: 1
+}
+
+.calculadora,
+.opciones {
+    order: 2;
+}
+
+.listar_Prod{
+    background-color: rgb(3, 3, 51);
+}
+.listar_Mate{
+    background-color: rgb(3, 3, 51);
+}
+.calculadora{
+    background-color: rgb(3, 3, 51);
+}
+.opciones{
+    background-color: rgb(3, 3, 51);
+}
+
+.contx{
+    width: 150px;
+    height: 150px;
+    margin-top: 30px;
+    margin-left: 70px;
+    
+}
+h1{
+    color: white;
+    margin-top: 50px;
+    margin-left: 40px;
+}
+.usu1{
+    width: 150px;
+    height: 100px;
+    margin-left: 80px;
+    margin-top: 100px;
+}
+h2{
+    width: 190px;
+    color: white;
+    margin-left: 15%;
+    margin-top: 100px;
+    box-shadow: 2px 2px 2px 4px black;
+    padding-left: 10px;
+    transition: transform 0.3s ease;
+}
+h2:hover{
+    transform: scale(1.1); 
+}
+a{
+    text-decoration: none;
+
+
+}
+.buscar{
+    width: 50%;
+    height: 10%;
+    background-color: aqua;
+    margin-left: 80px;
+}
+.search-form {
+    background-color: aqua;
+    display: flex;
+
+  }
+  
+.search-button {
+    margin-left: 20%;
+    height: 30px;
+    margin-left: 20px;
+    background: #1f53c5;
+    border: none;
+    padding: 5px;
+    color: white;
+    margin: 16px 0;
+    font-size: 16px;
+}
+
+
+@media screen and (max-width: 767px) {
+    body {
+        position: absolute;
+        display: block;
+    }
+    section{
+        margin-left: 0%;
+        width: 140%;
+        height: 550px;
+        background-image: url("../img/marek-piwnicki-fKjPKFeilfg-unsplash.jpg");
+        background-size: cover;
+        border-radius: 30px;
+    }
+    .imeg{
+        position: relative;
+        width: 150px ;
+        height: 100px;
+        margin-top: 20px;
+        margin-left: 30%;
+    }
+    .usu1{
+        width: 100px;
+        height: 80px;
+        margin-left: 35%;
+        margin-top: 50px;
+    }
+    h2{
+        width: 150px;
+        font-size: large;
+        color: white;
+        margin-left: 25%;
+        margin-bottom: 0px;
+        box-shadow: 2px 2px 2px 4px black;
+    }
+    .container {
+        position: absolute;
+        width: 800px;
+        height: 800px;
+        /* background-color: rgba(7, 41, 213, 0.402); */
+        display: block;
+        flex-wrap: wrap;
+        margin-bottom: 10%;
+    }
+
+    
+    
+
+}
+  

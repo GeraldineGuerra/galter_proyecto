@@ -55,9 +55,12 @@ class producto(models.Model):
 
 class pedido(models.Model):
     id_pedido = models.AutoField(primary_key=True)
-    cliente_pedido = models.ForeignKey(cliente, null=False,on_delete=models.CASCADE)
-    producto_pedido = models.ForeignKey(producto, null=False,on_delete=models.CASCADE)
-    usuario_pedido = models.ForeignKey(usuario, null=False,on_delete=models.CASCADE)
+    cliente_pedido = models.TextField(max_length=50)
+    producto_pedido = models.TextField(max_length=50)
+    usuario_pedido = models.TextField(max_length=50)
+    # cliente_pedido = models.ForeignKey(cliente, null=False,on_delete=models.CASCADE)
+    # producto_pedido = models.ForeignKey(producto, null=False,on_delete=models.CASCADE)
+    # usuario_pedido = models.ForeignKey(usuario, null=False,on_delete=models.CASCADE)
     tiempo_pedido = models.TextField(max_length=10)
     fecha_encargo = models.TextField(max_length=10)
     fecha_entrega = models.TextField(max_length=10)

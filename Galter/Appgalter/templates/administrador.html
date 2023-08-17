@@ -17,20 +17,24 @@
         <h4>Ingresa Como Administrador</h4>
         <input class="controls" type="text" name="usuario" id="usuario" placeholder="Administrador">
         <input class="controls" type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
-        <a href="index.html"><input class="botons" type="submit" value="Registrarse"></a>
+        <input class="botons" type="submit" value="Registrarse" id="submitBtn">
         <p><a href="index.html">Volver</a></p>
     </section>
 
     <script>
-        function validarFormulario() {
+        document.getElementById("submitBtn").addEventListener("click", function(event) {
+            event.preventDefault();
+
             var usuario = document.getElementById("usuario").value;
             var contrasena = document.getElementById("contrasena").value;
-            if (usuario === "geraldine guerra" && contrasena === "123") {
-                window.location.href = "dashboard.html";
-            } else {
+
+            if (usuario === "natalia" && contrasena === "1234") {
+                window.location.href = "menu.html";
+            }
+            else {
                 alert("Usuario o contraseña incorrectos");
             }
-        }
+        });
     </script>
 </body>
 </html>

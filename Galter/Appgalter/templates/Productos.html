@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+</head>
+<body>
+
+    <tbody>
+
+        <h1>Productos</h1>
+        
+        <div class="row">
+          <table class="table">
+              <thead>
+                <tr class="titu">
+                  <th class="t1" scope="col">Codigo</th>
+                  <th scope="col">Nombre </th>
+                  <th scope="col">Tiempo</th>
+                  <th scope="col">Longitud</th>
+                  <th scope="col">Material</th>
+                  <th scope="col">Precio</th>
+                </tr>
+              </thead>
+              {% for i in datos%}
+              <tbody>
+                <tr class="text1">
+                  <td>{{ i.codi_prod }}</td>
+                  <td>{{ i.nomb_prod }}</td>
+                  <td>{{ i.tiempo_prod }}</td>
+                  <td>{{ i.long_prod }}</td>
+                  <td>{{ i.material_prod }}</td>
+                  <td>{{ i.prec_prod }}</td>
+                </tr>
+              </tbody>
+              {% endfor%}
+            </table>
+    
+      </div>
+            
+        </tbody>
+    
+</body>
+</html>

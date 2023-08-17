@@ -1,5 +1,5 @@
 function consultarProd(){
-    fetch("http://127.0.0.1:8000/Producto",{
+    fetch("http://127.0.0.1:8000/produc",{
         method:"GET",
         headers:{
             "consultar-tipe":"Appgalter/json"
@@ -29,3 +29,4 @@ function consultarProd(){
         }
     })
 }
+consultarProd();

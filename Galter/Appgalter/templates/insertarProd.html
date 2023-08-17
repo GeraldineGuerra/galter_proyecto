@@ -5,14 +5,31 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="{% static 'gestionProd.js' %}"></script>
         <script src="{% static 'consultarProd.js' %}"></script>
-        <link rel="stylesheet" href="{% static 'index3.css' %}">
+        <link rel="stylesheet" href="{% static 'css/insertarprod.css'%}">
         <title>Insertar Productos</title>
     </head>
 <body>
+    <section>
+        <div class="volver">
+            <button onclick="goBack()">Volver</button>
+            <script>
+                function goBack() {
+                  window.history.back();
+                }
+                </script>
+              
+        </div>
+        <img class="imeg" src="../static/img/logo.png" alt=""> 
 
-    <h1>Insertar Productos</h1>
+        <img class="usu1" src="../static/img/usuario.png" alt="">
+
+        <h2>Carlos Rodriguez</h2>
+        <h2>Administrador</h2>
+    </section>
+
 
     <form method="" action="" id="frmProducto">
         {% csrf_token %}
@@ -25,7 +42,7 @@
         <label for="tiempo_prod">Tiempo Del Producto</label>
         <input type="text" name="tiempo" id="tiempo">
 
-        <label for="long_prod">Longitud Del Producto</label>
+        <label for="long_prod">Longitud Del Producto</label>    
         <input type="text" name="longitud" id="longitud">
 
         <label for="material_prod">Material del Producto</label>
@@ -36,7 +53,11 @@
 
 
 
-        <input type="submit" value="Guardar">
+        <input class="Guardar" type="submit" value="Guardar">
+
+
+        
+        <a href="/Producto"><h3>Ver productos</h3></a>
     </form>
 
     <table id="ConsultaProducto"></table>

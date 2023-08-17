@@ -45,7 +45,12 @@ class listarUsuario2(ListView):
         return render(request, 'index1.html',{'datos': datosusu})
     
 
-    
+
+
+
+
+
+
 
 
 # class listarProveedor(ListView):
@@ -91,6 +96,13 @@ class listarUsuario2(ListView):
         
 #         #return JsonResponse(datosusu, safe=False)
     
+
+def index(request):
+    return render(request,"index.html")
+
+
+
+
 
 
 
@@ -201,6 +213,7 @@ class listarProveedor(ListView):
             }) 
         return JsonResponse(datos_proveedor, safe=False)
         
+        
 
 class InsertarProveedor(View):
     @method_decorator(csrf_exempt)
@@ -224,22 +237,32 @@ def formularioInsertarProv(request):
 
 
 
+# def principal (request):
+#     listarMaterial=material.objects.all()
+#     return render(request,"listarMate.html",{'mat':listarMaterial})
 
+
+# class listadoMateriales(ListView):
+#     model=material
+#     template_name="listarMate.html"
 
 
 
 class listarMaterial(ListView):
     def get(self,request):
         datos=material.objects.all()
-        datos_material=[]
-        for i in datos:
-            datos_material.append({ 
-                'codi_mate':i.codi_mate,
-                'nomb_mate':i.nomb_mate,
-                'cant_mate':i.cant_mate,
-                'proveedor_mate':i.proveedor_mate,
-            }) 
-        return JsonResponse(datos_material, safe=False)
+        # datos_material=[]
+        # for i in datos:
+        #     datos_material.append({ 
+        #         'codi_mate':i.codi_mate,
+        #         'nomb_mate':i.nomb_mate,
+        #         'cant_mate':i.cant_mate,
+        #         'proveedor_mate':i.proveedor_mate,
+        #     }) 
+        datosmate=list(datos)
+        #return JsonResponse(datos_material, safe=False)
+        return render(request, 'listarMate.html',{'datos': datosmate})
+        
         
 
 class InsertarMaterial(View):
@@ -268,13 +291,20 @@ def formularioInsertarMate(request):
 
 
 
-
-
-
-
 class listarProducto(ListView):
     def get(self,request):
+        datos=producto.objects.all().values()
+        datosprod=list(datos)
+        return render(request, 'listarProd.html',{'datosP': datosprod})
+    
+
+
+
+
+class listarProductoo(View):
+    def get(self,request):
         datos=producto.objects.all()
+        print(datos)
         datos_producto=[]
         for i in datos:
             datos_producto.append({ 
@@ -284,9 +314,14 @@ class listarProducto(ListView):
                 'long_prod':i.long_prod,
                 'material_prod':i.material_prod,
                 'prec_prod':i.prec_prod,
-            }) 
+            })
         return JsonResponse(datos_producto, safe=False)
         
+
+
+
+
+
 
 class InsertarProducto(View):
     @method_decorator(csrf_exempt)
@@ -308,7 +343,12 @@ class InsertarProducto(View):
         return JsonResponse({'mensaje': 'datos guardados'})
 
 def formularioInsertarProd(request):
-    return render(request,"insertarProd.html")    
+    return render(request,"insertarProd.html")   
+
+# def insertarProducto(request):
+#     return render(request,"insertarProd.html")
+    
+ 
 
 
 
@@ -323,9 +363,9 @@ class listarpedido(ListView):
         for i in datos:
             datos_pedido.append({ 
                 'id_pedido':i.id_pedido,
-                'cliente_pedido':i.cliente_pedido.id_cliente,
-                'producto_pedido':i.producto_pedido.codi_prod,
-                'usuario_pedido':i.usuario_pedido.codi_usuario,
+                'cliente_pedido':i.cliente_pedido,
+                'producto_pedido':i.producto_pedido,
+                'usuario_pedido':i.usuario_pedido,
                 'tiempo_pedido':i.tiempo_pedido,
                 'fecha_encargo':i.fecha_encargo,
                 'fecha_entrega':i.fecha_entrega,
@@ -383,5 +423,25 @@ def formularioInsertarPedi(request):
 #         registro.tipo=data.get('tipo_usuario')
 #         registro.save()
 #         return JsonResponse({"mensaje": "datos  del usuario actualizados"})
+
+
+def registro(request):
+    return render(request, "registro.html")
+
+
+def codigo(request):
+    return render(request, "codigo.html")
+
+
+def menu(request):
+    return render(request, "menu.html")
+
+
+def masOpciones(request):
+    return render(request, "masOpciones.html")
+
+
+def opcionesProd(request):
+    return render(request, "opcionesProd.html")
 
 

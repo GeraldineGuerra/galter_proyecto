@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="/Galter/Appgalter/css/listarMate.css">
+    <title>Materiales</title>
+</head>
+<body>
+    <h1>Materiales</h1>
+
+    <div class="row">
+
+        <table class="table">
+            <thead>
+                <tr class="titu">
+                    <th class="t1" scope="col">Codigo</th>
+                    <th scope="col">nombre</th>
+                    <th scope="col">cantidad</th>
+                    <th scope="col">proveedor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for i in datos%}
+                <tr class="text1">
+                    
+                    <td>{{i.codi_mate}}</td>
+                    <td>{{i.nomb_mate}}</td>
+                    <td>{{i.cant_mate}}</td>
+                    <td>{{i.proveedor_mate}}</td>
+                    
+                </tr>
+                {%endfor%}
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+
+</body>
+</html>
+

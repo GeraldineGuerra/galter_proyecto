@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/menu.css'%}">
+    <script src="/static/consultarProd.js"></script>
+    <title>Menu</title>
+</head>
+<body>
+
+    
+
+    <section>
+
+        <img class="imeg" src="../static/img/logo.png" alt=""> 
+
+        <img class="usu1" src="../static/img/usuario.png" alt="">
+
+        <h2>Carlos Rodriguez</h2>
+
+        <a href="/index"><h2 class="cerrarSe">Cerrar Sesion</h2></a>
+    </section>
+
+
+
+
+    <div class="container">
+        <div class="listar_Prod">
+
+            <a href="/Producto">
+                <img class="contx" id="listar" src="../static/img/producto.png" alt="Descripción de la imagen">
+              </a>
+              <h1>Listar Productos</h1>
+              
+        </div>
+
+
+        <div class="listar_Mate">
+        
+            <a href="/Material">
+                <img class="contx" src="../static/img/material.png" alt="Descripción de la imagen">
+              </a>
+              <h1>Listar Materiales</h1>
+              
+        </div>
+        <div class="calculadora">
+            
+            <a href="otra_pantalla.html">
+                <img class="contx" src="../static/img/calculadora.png" alt="Descripción de la imagen">
+              </a>
+              <h1>Calculadora</h1>
+
+        </div>
+        <div class="opciones">
+            
+            <a href="/masOpciones">
+                <img class="contx" src="../static/img/opciones.png" alt="Descripción de la imagen">
+              </a>
+              <h1>Mas Opciones</h1>
+              
+        </div>
+    </div>
+
+
+    
+    
+</body>
+</html>

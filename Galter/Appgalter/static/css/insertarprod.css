@@ -1,0 +1,157 @@
+body {
+    background-color: rgb(3, 3, 51);
+    display: flex;
+}
+
+section{
+    margin-top: 30px;
+    margin-left: 5%;
+    width: 300px;
+    height: 800px;
+    background-image: url("../img/marek-piwnicki-fKjPKFeilfg-unsplash.jpg");
+    background-size: cover;
+    border-radius: 30px;
+}
+.imeg{
+    width: 250px ;
+    height: 200px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.volver{
+    margin-left: 20px;
+}
+button{
+    background-color: black;
+    border-radius: 20px;
+    padding: 10px;
+    color: rgb(255, 255, 255);
+    margin-top: 10%;
+    font-size: 20px;
+}
+.usu1{
+    width: 150px;
+    height: 100px;
+    margin-left: 80px;
+    margin-top: 50px;
+}
+h2{
+    width: 190px;
+    color: white;
+    margin-left: 15%;
+    margin-top: 100px;
+    box-shadow: 2px 2px 2px 4px black;
+    padding-left: 10px;
+}
+
+form{
+    background-color: rgb(3, 3, 51);
+    margin-top: 2%;
+    padding: 70px;
+    width: 32%;
+    height: 60%;
+    margin-left: 15%;
+    border-color: rgb(255, 255, 255);
+    border-width: 1px; 
+    border-style: solid;
+    border-radius: 20px;
+}
+label{
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    margin-top: 0px;
+}
+input{
+    color: rgb(173, 173, 173);
+    margin-bottom: 20px;
+    height: 35px;
+    border: 2px gray solid;
+    background-color: rgba(255, 255, 255, 0.313);
+    border-radius: 20px;
+    width: 92%;
+    margin-top: 10px;
+}
+.Guardar{
+    width: 50%;
+    margin-left: 20%;
+    background-color: black;
+    color: white;
+}
+a{
+    text-align: center;
+    text-decoration: none;
+}
+h3{
+    font-size: 15px;
+    width: 150px;
+    color: white;
+    margin-right: 10%;
+    margin-top: 50px;
+    box-shadow: 2px 2px 2px 2px rgb(133, 133, 133);
+    padding-left: 10px;
+    transition: transform 0.3s ease;
+}
+h3:hover{
+    transform: scale(1.1); 
+}
+
+
+
+@media screen and (max-width: 767px) {
+    body {
+        position: absolute;
+        display: block;
+    }
+    section{
+        margin-left: 0%;
+        width: 100%;
+        height: 650px;
+        background-image: url("/Galter/Appgalter/static/img/marek-piwnicki-fKjPKFeilfg-unsplash.jpg");
+        background-size: cover;
+        border-radius: 30px;
+    }
+    .imeg{
+        position: relative;
+        width: 150px ;
+        height: 100px;
+        margin-top: 20px;
+        margin-left: 30%;
+    }
+    .usu1{
+        width: 100px;
+        height: 100px;
+        margin-left: 35%;
+        margin-top: 50px;
+    }
+    h2{
+        width: 150px;
+        font-size: large;
+        color: white;
+        margin-left: 25%;
+        margin-bottom: 0px;
+        box-shadow: 2px 2px 2px 4px black;
+    }
+
+    form{
+        margin-top: 2%;
+        padding: 30px;
+        width: 80%;
+        height: 80%;
+        margin-left: 0%;
+        border-color: rgb(255, 255, 255);
+        border-width: 1px; 
+        border-style: solid;
+        border-radius: 20px;
+    }
+    .Guardar{
+        background-color: black;
+        color: white;
+    }
+
+
+    
+    
+
+}
+  

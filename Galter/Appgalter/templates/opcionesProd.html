@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/opcionesProd.css'%}">
+    <title>Opciones Productos</title>
+</head>
+<body>
+
+    
+
+    <section>
+        <div class="volver">
+            <button onclick="goBack()">Volver</button>
+            <script>
+                function goBack() {
+                  window.history.back();
+                }
+                </script>
+              
+        </div>
+        <img class="imeg" src="../static/img/logo.png" alt=""> 
+
+        <img class="usu1" src="../static/img/usuario.png" alt="">
+
+
+        <a href="/menu"><h3>Home</h3></a>
+        <h2>Carlos Rodriguez</h2>
+        <h2>Administrador</h2>
+    </section>
+
+
+
+
+    <div class="container">
+        <div class="listar_Prod">
+
+            <a href="/frmProducto">
+                <img class="contx" src="../static/img/agragar.png   " alt="Descripción de la imagen">
+              </a>
+              <h1>Agregar Producto </h1>
+              
+        </div>
+
+
+        <div class="listar_Mate">
+        
+            <a href="otra_pantalla.html">
+                <img class="contx" src="../static/img/actualizar.png" alt="Descripción de la imagen">
+              </a>
+              <h1>Actualizar Producto</h1>
+              
+        </div>
+        <div class="calculadora">
+            
+            <a href="otra_pantalla.html">
+                <img class="contx" src="../static/img/eliminar.png" alt="Descripción de la imagen">
+              </a>
+              <h1>Eliminar Producto </h1>
+
+        </div>
+    
+    
+</body>
+</html>
