@@ -18,6 +18,6 @@ from django.urls import path,include
 from Appgalter.views import *
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    #path('admin/', admin.site.urls),
     path('',include('Appgalter.urls')),
 ]

@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import *
 
 class usuario(models.Model):
     codi_usuario = models.TextField(max_length=10, primary_key=True)
@@ -8,6 +8,11 @@ class usuario(models.Model):
     pass_usuario = models.TextField(max_length=100)
     tipo_usuario = models.TextField(max_length=30)
 
+
+class User(AbstractUser):
+    rol = models.CharField(max_length=100)
+    imagen = models.ImageField(upload_to='img/',null=True, blank=True)
+    codigo = models.OneToOneField(usuario, on_delete=models.CASCADE, primary_key=True)
 
 
 
