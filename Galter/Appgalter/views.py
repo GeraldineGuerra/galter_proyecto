@@ -3,7 +3,7 @@ from typing import Any
 from django.http import JsonResponse
 from django.shortcuts import render
 
-
+from django.contrib.auth.decorators import *
 from Appgalter.models import usuario
 from Appgalter.models import proveedor
 from Appgalter.models import cliente, material, pedido, producto
@@ -149,6 +149,7 @@ class InsertarUsuario(View):
         # return render(request,'insertarCli.html',{'mensaje': 'Datos guardados'})
 
 
+@login_required
 def formularioInsertar(request):
     return render(request,"insertarUsu.html")    
 

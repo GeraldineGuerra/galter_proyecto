@@ -1,6 +1,9 @@
 from django.urls import path
-from Appgalter.views import listarUsuarios, InsertarUsuario, InsertarCliente,listarClientes,listarProveedor,InsertarProveedor,listarMaterial,InsertarMaterial,InsertarProducto,listarProducto,listarpedido,InsertarPedido,listarProductoo
+from Appgalter.views import *
+from Appgalter.viewsAuth import *
 from . import views
+from django.conf import *
+from django.conf.urls.static import *
 
 
 
@@ -52,4 +55,10 @@ urlpatterns = [
     path('opcionesProd', views.opcionesProd, name='opciProd'),
 
     
-]
+
+    path('registroUser/',RegistrarUsuarioView.as_view(), name="registrar_usuario"),
+    path('iniciarSesion/', IniciarSesionView.as_view(),name='iniciar_sesion'),
+    path('updateUsuario/', PerfilUsuarioView.as_view(), name="update_usuario")
+
+
+]+ static (settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
