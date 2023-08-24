@@ -88,7 +88,7 @@ class IniciarSesionView(View):
                 login(request, datt)
                 if datt.rol == 'admin':
                     print('registrado rol')
-                    return redirect('update_usuario')
+                    return redirect('menus')
                 else:
                     print('error rol')
                     form.add_error(None, 'Credenciales inválidas. Por favor, intenta nuevamente.')
@@ -100,8 +100,8 @@ class PerfilUsuarioView(View):
 
     def get(self, request):
         try:
-            usuarioo = usuario.objects.get(codi_usuario=request.user.codigo_id)
             userr = request.user
+            usuarioo = usuario.objects.get(codi_usuario=request.user.codigo_id)
             print(userr.imagen)
         except usuario.DoesNotExist:
             messages.error(request, 'No se encontraron los datos del usuario.')
