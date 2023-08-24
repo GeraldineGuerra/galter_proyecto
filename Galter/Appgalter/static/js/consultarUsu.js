@@ -20,9 +20,8 @@ function consultar(){
                 <tr>
                 <td>${dat.codi_usuario}</td>
                 <td>${dat.nombre_usuario}</td>
+                <td>${dat.apellido_usuario}</td>
                 <td>${dat.correo_usuario}</td>
-                <td>${dat.pass_ususario}</td>
-                <td>${dat.tipo_usuario}</td>
                 </tr>`
             }
         }

@@ -4,9 +4,8 @@ document.addEventListener("DOMContentLoaded", function(){
         var data={
             codi_usuario:document.getElementById("codigo").value,
             nombre_usuario:document.getElementById("nombre").value,
+            apellido_usuario:document.getElementById("apellido").value,
             correo_usuario:document.getElementById("correo"). value,
-            pass_usuario:document.getElementById("password").value,
-            tipo_usuario:document.getElementById("tipo").value
         };
         var jsonData=JSON.stringify(data);
         fetch("http://127.0.0.1:8000/insertarUsu/",{

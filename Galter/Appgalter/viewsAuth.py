@@ -87,8 +87,10 @@ class IniciarSesionView(View):
             if datt is not None:
                 login(request, datt)
                 if datt.rol == 'admin':
-                    return redirect('menus')
+                    print('registrado rol')
+                    return redirect('update_usuario')
                 else:
+                    print('error rol')
                     form.add_error(None, 'Credenciales inválidas. Por favor, intenta nuevamente.')
 
 
@@ -98,19 +100,19 @@ class PerfilUsuarioView(View):
 
     def get(self, request):
         try:
-            usuarioo = usuario.objects.get(codi_usuario=request.user.codigo)
+            usuarioo = usuario.objects.get(codi_usuario=request.user.codigo_id)
             userr = request.user
-            print(User.imagen)
+            print(userr.imagen)
         except usuario.DoesNotExist:
             messages.error(request, 'No se encontraron los datos del usuario.')
             return redirect('iniciar_sesion')
 
-        form = UpdateUser(instance=usuario)
+        form = UpdateUser(instance=usuarioo)
         return render(request, self.template_name, {'form': form, 'usuario': usuarioo, 'user':userr})
 
     def post(self, request):
         try:
-            usuarioo = usuario.objects.get(codi_usuario=request.user.codigo)
+            usuarioo = usuario.objects.get(codi_usuario=request.user.codigo_id)
         except usuario.DoesNotExist:
             messages.error(request, 'No se encontraron los datos del usuario.')
             return redirect('iniciar_sesion')
@@ -120,7 +122,7 @@ class PerfilUsuarioView(View):
         if form.is_valid():
             form.save()
             messages.success(request, 'Cambios guardados correctamente.')
-            return redirect('update_usuario')
+            return redirect('menus')
 
         return render(request, self.template_name, {'form': form, 'usuario': usuarioo})
 

@@ -4,9 +4,8 @@ from django.contrib.auth.models import *
 class usuario(models.Model):
     codi_usuario = models.TextField(max_length=10, primary_key=True)
     nombre_usuario = models.TextField(max_length=50)
+    apellido_usuario = models.TextField(max_length=50)
     correo_usuario = models.EmailField(max_length=50)
-    pass_usuario = models.TextField(max_length=100)
-    tipo_usuario = models.TextField(max_length=30)
 
 
 class User(AbstractUser):

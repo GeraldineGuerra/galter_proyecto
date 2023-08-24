@@ -36,9 +36,8 @@ class listarUsuario2(ListView):
             datos_Usuarios.append({ 
                 'codi_usuario':i.codi_usuario,
                 'nombre_usuario':i.nombre_usuario,
+                'apellido_usuario':i.apellido_usuario,
                 'correo_usuario':i.correo_usuario,
-                'pass_usuario':i.pass_usuario,
-                'tipo_usuario':i.tipo_usuario
             }) 
         datosusu=list(datos)
         #return JsonResponse(datos_Usuarios, safe=False)
@@ -115,9 +114,8 @@ class listarUsuarios(ListView):
             datos_Usuarios.append({ 
                 'codi_usuario':i.codi_usuario,
                 'nombre_usuario':i.nombre_usuario,
+                'apellido_usuario':i.apellido_usuario,
                 'correo_usuario':i.correo_usuario,
-                'pass_usuario':i.pass_usuario,
-                'tipo_usuario':i.tipo_usuario
             }) 
         #datoscli=list(datos)
         return JsonResponse(datos_Usuarios, safe=False)
@@ -135,21 +133,19 @@ class InsertarUsuario(View):
             return JsonResponse({"error": "Erra en la decodificacion"})
         codi_usuario = datos.get('codi_usuario')
         nombre_usuario = datos.get('nombre_usuario')
+        apellido_usuario = datos.get('apellido_usuario')
         correo_usuario = datos.get('correo_usuario')
-        pass_usuario = datos.get('pass_usuario')
-        tipo_usuario = datos.get('tipo_usuario')
         print(datos.get('codigo'))
         #cli=Cliente.objects.create(codi_usuario=datos['codi_usuario'],nombre_usuario=datos['nombre_usuario'],correo_usuario=datos['correo_usuario'],pass_usuraio=datos['pass_usuraio'],tipo_usuraio=datos['tipo_usuraio'])
         #cli.save()
         #return JsonResponse({'mensaje': 'datos guardados'})
-        usu=usuario.objects.create(codi_usuario=codi_usuario, nombre_usuario=nombre_usuario, correo_usuario=correo_usuario, pass_usuario=pass_usuario, tipo_usuario=tipo_usuario)
+        usu=usuario.objects.create(codi_usuario=codi_usuario, nombre_usuario=nombre_usuario, apellido_usuario=apellido_usuario,correo_usuario=correo_usuario)
         usu.save()
         
         return JsonResponse({'mensaje': 'datos guardados'})
         # return render(request,'insertarCli.html',{'mensaje': 'Datos guardados'})
 
 
-@login_required
 def formularioInsertar(request):
     return render(request,"insertarUsu.html")    
 
