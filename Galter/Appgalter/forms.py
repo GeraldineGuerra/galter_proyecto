@@ -30,6 +30,26 @@ class UserForm(UserCreationForm):
 
 
 class LoginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({
+            'required':'',
+            'name':'usuario',
+            'id':'usuario',
+            'type':'text',
+            'class':'controls',
+            'placeholder':'Nombre de Usuario',  
+            'minlength':'1'
+        })
+        self.fields['password'].widget.attrs.update({
+            'required':'',
+            'name':'contrasena',
+            'id':'contrasena',
+            'type':'password',
+            'class':'controls',
+            'placeholder':'Contraseña',  
+            'minlength':'1'
+        })
     class Meta:
         model : User
         fields = {'username','password'}
@@ -38,4 +58,4 @@ class LoginForm(AuthenticationForm):
 class UpdateUser(forms.ModelForm):
     class Meta:
         model = usuario
-        fields = ['nombre_usuario','correo_usuario']
+        fields = ['nombre_usuario','correo_usuario','apellido_usuario']

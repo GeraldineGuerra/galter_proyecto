@@ -1,15 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/iniciosesion.css'%}">
     <title>Iniciar Sesion</title>
 </head>
 <body>
-    <form action="" method="post">
+    <header>
+        <img class="logo" src="/Galter/Appgalter/img/logo.png" alt="">
+    </header>
+    <form action="" method="post" class="form">
+        <h4>Iniciar Sesion</h4>
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Iniciar Sesion</button>
+        <button type="submit" class="botons" id="submitBtn">Iniciar Sesion</button>
+        <p><a href="index.html">Volver</a></p>
     </form>
 </body>
 </html>
