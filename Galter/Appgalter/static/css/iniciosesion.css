@@ -46,7 +46,7 @@ header{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 18px;
 }
-.from p{
+.form p{
     color: white;
     height: 40px;
     text-align: center;
@@ -67,7 +67,7 @@ header{
     border: none;
     padding: 12px;
     color: white;
-    margin: 16px 0;
+    margin: 50px 0px 10px 0px;
     font-size: 16px;
     border-radius: 20px;
 }
