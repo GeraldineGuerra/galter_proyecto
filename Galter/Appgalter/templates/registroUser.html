@@ -4,12 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href='{% static "css/registroUser.css"%}' type="text/css">
+    <link rel="stylesheet" href="{% static 'css/registro.css'%}">
     <title>Document</title>
 </head>
 <body>
-    <h1>Registro de usuario</h1>
-    <form action="/registroUser/" method="post" enctype="multipart/form-data">
+    <header>
+        <img class="logo" src="../static/img/logo.png" alt="">
+    </header>
+
+    <form class="form" action="/registroUser/" method="post" enctype="multipart/form-data">
+        <h1>Registro de usuario</h1>
         {% csrf_token %}
 
         {% if form.errors %}
@@ -19,19 +23,54 @@
             </script>
         {% endif %}
 
-        <div>
-            <label for="">Documento</label> 
-            {{ form.codigo }}
-                {% if form.errors.codigo %}
-                    <div class="error">
-                        {{ form.errors.codigo }}
-                    </div>
-                {% endif %}
-        </div>
+        {{ form.codigo }}
+            {% if form.errors.codigo %}
+                <div class="error">
+                    {{ form.errors.codigo }}
+                </div>
+            {% endif %}
+
+        {{ form.username }}
+            {% if form.errors.codigo %}
+                <div class="error">
+                    {{ form.errors.username }}
+                </div>
+            {% endif %}
+
+        {{ form.email }}
+            {% if form.errors.codigo %}
+                <div class="error">
+                    {{ form.errors.email }}
+                </div>
+            {% endif %}
+
+        {{ form.password1 }}
+            {% if form.errors.codigo %}
+                <div class="error">
+                    {{ form.errors.password1 }}
+                </div>
+            {% endif %}
+
+        {{ form.password2 }}
+            {% if form.errors.codigo %}
+                <div class="error">
+                    {{ form.errors.password2 }}
+                </div>
+            {% endif %}
+
+        {{ form.rol }}
+            {% if form.errors.codigo %}
+                <div class="error">
+                    {{ form.errors.rol }}
+                </div>
+            {% endif %}
+
+        {{ form.imagen }}
 
 
 
-        <button type="submit">Registrar</button>
+        <a href="/codigo"><input class="botons" type="submit" value="Siguiente"></a>
+        <p><a href="/index">Volver</a></p>
     </form>
 </body>
 </html>
