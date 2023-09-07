@@ -94,7 +94,7 @@ class IniciarSesionView(View):
                     form.add_error(None, 'Credenciales inválidas. Por favor, intenta nuevamente.')
 
 
-@method_decorator(login_required(login_url='iniciar_sesion'), name='dispatch')
+""" @method_decorator(login_required(login_url='iniciar_sesion'), name='dispatch')
 class PerfilUsuarioView(View):
     template_name = 'actUsuario.html'
 
@@ -124,8 +124,50 @@ class PerfilUsuarioView(View):
             messages.success(request, 'Cambios guardados correctamente.')
             return redirect('menus')
 
-        return render(request, self.template_name, {'form': form, 'usuario': usuarioo})
+        return render(request, self.template_name, {'form': form, 'usuario': usuarioo}) """
 
+@method_decorator(login_required(login_url='iniciar_sesion'), name='dispatch')
+class PerfilUsuarioView(View):
+    template_name = 'actUsuario.html'
+
+    def get(self, request):
+        try:
+            userr = request.user
+            print(userr.imagen)
+        except User.DoesNotExist:
+            messages.error(request, 'No se encontraron los datos del user.')
+            return redirect('menus')
+
+        form = UpdateUser(instance=userr)
+        return render(request, self.template_name, {'form': form, 'user':userr})
+
+    def post(self, request):
+        try:
+            userr = User.objects.get(codigo_id=request.user.codigo_id)
+        except User.DoesNotExist:
+            messages.error(request, 'No se encontraron los datos del user.')
+            return redirect('menus')
+
+        form = UpdateUser(request.POST, instance=userr)
+
+        if form.is_valid():
+            print("form valid")
+            if 'imagen' in request.FILES:
+                print("imagen en diccionario")
+                imagen_file = request.FILES['imagen']
+                user_instance = form.save(commit=False)
+                user_instance.imagen = imagen_file
+                user_instance.save()
+                form.save()
+                messages.success(request, 'Cambios guardados correctamente.')
+                return redirect('update_usuario')
+            else:
+                messages.success(request, 'No se ha seleccionado una imgen')
+        else:
+            print("ERROR")
+            messages.error(request,"Error al actualizar user")
+
+        return render(request, self.template_name, {'form': form, 'user': userr})
 
 def frmUpdateUser(request):
     return render(request, "actUsuario.html")
