@@ -1,5 +1,90 @@
-#codigo_input{
-    background-color: blue;
-    font-size: 50px;
+body::before{
+    content: "";
+    width: 100%;
+    min-height: 200%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgb(3, 3, 51);
+    z-index: -5;
+    position: fixed;
+}
+
+header{
+    width: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.form{
+    width: 400px;
+    height: 100%;
+    background-color: rgb(3, 3, 51);
+    padding: 40px;
+    margin: auto;
+    margin-top: 50px;
+    border-color: rgb(255, 255, 255);
+    border-width: 2px; 
+    border-style: solid;
+    border-radius: 12px; 
+    color: white;
+    box-shadow: 7px 13px 37px #000;
+    margin-bottom: 100px;
+}
+
+.form h1{
+    font-size: xx-large;
+    margin-bottom: 50px;
+}
+
+.form-input{
+    width: 90%;
+
+    color: rgb(0, 0, 0);
+    padding: 10px;
+    margin: auto;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    font-size: 18px;
+    border-color: rgb(255, 255, 255);
+    border-width: 3px; 
+    border-style: solid;
+}
+
+.form p{
+    color: rgb(0, 0, 0);
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 40px;
+}
+.form a{
+    color: white;
+    text-decoration: none;
+}
+.form a:hover{
+    color: rgba(159, 159, 159, 0.475);
+    text-decoration: underline;
+}
+
+.form .botons{
+    width: 100%;
+    background: #082c78;
+    border: none;
+    padding: 12px;
+    color: white;
+    margin: 16px 0;
+    font-size: 16px;
+    border-radius: 20px;
+}
+
+#label-foto{
+    color: white;
+    font-size:x-large;
+}
+#imagen_input{
+    margin-top: 20px;
     color: white;
 }
