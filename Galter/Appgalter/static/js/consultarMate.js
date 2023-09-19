@@ -1,5 +1,5 @@
 function consultarMate(){
-    fetch("http://127.0.0.1:8000/Material",{
+    fetch("http://127.0.0.1:8000/matt",{
         method:"GET",
         headers:{
             "consultar-tipe":"Appgalter/json"
@@ -27,3 +27,4 @@ function consultarMate(){
         }
     })
 }
+consultarMate();

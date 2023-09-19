@@ -20,23 +20,21 @@ class UserForm(UserCreationForm):
         })
         self.fields['username'].widget.attrs.update({
             'required':'',
-            'name':'username_input',
-            'id':'username_input',
+            'name':'name_input',
+            'id':'name_input',
             'type':'text',
-            'class':'form-input',
-            'placeholder':'Nombre de usuario',  
-            'maxlength':'',
+            'class':'controls',
+            'placeholder':'Nombre de Usuario',  
+            'maxlength':'20',
             'minlength':'1'
         })
         self.fields['email'].widget.attrs.update({
             'required':'',
             'name':'email_input',
             'id':'email_input',
-            'type':'text',
-            'class':'form-input',
-            'placeholder':'Correo electronico',  
-            'maxlength':'',
-            'minlength':'1'
+            'type':'email',
+            'class':'controls',
+            'placeholder':'Correo Electronico',  
         })
         self.fields['password1'].widget.attrs.update({
             'required':'',
@@ -52,24 +50,22 @@ class UserForm(UserCreationForm):
             'id':'pass2_input',
             'type':'password',
             'class':'controls',
-            'placeholder':'Confirmar Contraseña',
+            'placeholder':'Confirmar Contraseña',  
         })
         self.fields['rol'].widget.attrs.update({
             'required':'',
             'name':'rol_input',
             'id':'rol_input',
             'type':'text',
-            'class':'form-input',
-            'placeholder':'Rol',  
-            'maxlength':'',
-            'minlength':'1'
+            'class':'controls',
+            'placeholder':'Rod de Usuario',  
         })
         self.fields['imagen'].widget.attrs.update({
-            'id':'imagen_input',
+            'name':'img',
+            'id':'img',
             'type':'file',
-            'class':'form-input',
+            'class':'controls'
         })
-
     rol = forms.CharField(max_length=100)
     imagen = forms.ImageField(required=False)
     codigo = forms.CharField(max_length=10)

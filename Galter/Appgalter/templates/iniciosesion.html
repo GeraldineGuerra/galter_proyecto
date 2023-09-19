@@ -11,8 +11,7 @@
     <header>
         <img class="logo" src="/Galter/Appgalter/img/logo.png" alt="">
     </header>
-    
-    <form action="/iniciarSesion/" method="post" enctype="multipart/form-data" class="form">
+    <form action="/iniciarSesion/" method="post" class="form">
         <h4>Iniciar Sesion</h4>
         {% csrf_token %}
         {% if form.errors %}
@@ -21,25 +20,20 @@
                 alert("Errores en el formulario: " + errorMessage);
             </script>
         {% endif %}
-        <div>
-            <label for=""></label> 
-            {{ form.username }}
-                {% if form.errors.username %}
-                    <div class="error">
-                        {{ form.errors.username }}
-                    </div>
-                {% endif %}
-        </div>
 
-        <div>
-            <label for=""></label> 
-            {{ form.password }}
-                {% if form.errors.username %}
-                    <div class="error">
-                        {{ form.errors.password }}
-                    </div>
-                {% endif %}
-        </div>
+        {{ form.username }}
+            {% if form.errors.username %}
+                <div class="error">
+                    {{ form.errors.username }}
+                </div>
+            {% endif %}
+
+        {{ form.password }}
+            {% if form.errors.password %}
+                <div class="error">
+                    {{ form.errors.password }}
+                </div>
+            {% endif %}
         <button type="submit" class="botons" id="submitBtn">Iniciar Sesion</button>
         <p><a href="/index">Volver</a></p>
     </form>

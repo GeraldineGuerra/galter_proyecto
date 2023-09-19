@@ -19,6 +19,7 @@ urlpatterns = [
 
 
     path('produc', listarProductoo.as_view(), name='prod'),
+    path('matt', listarMateriaal.as_view(), name='matee'),
 
 
 

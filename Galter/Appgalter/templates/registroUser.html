@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href='{% static "css/registroUser.css"%}' type="text/css">
-    <title>Registrar Usuario</title>
+    <link rel="stylesheet" href="{% static 'css/registro.css'%}">
+    <title>Document</title>
 </head>
 <body>
     <header>
         <img class="logo" src="../static/img/logo.png" alt="">
-    </header> 
-    <form action="/registroUser/" method="post" enctype="multipart/form-data" class="form">
+    </header>
+
+    <form class="form" action="/registroUser/" method="post" enctype="multipart/form-data">
         <h1>Registro de usuario</h1>
         {% csrf_token %}
 
@@ -21,72 +22,51 @@
                 alert("Errores en el formulario: " + errorMessage);
             </script>
         {% endif %}
-        <div>
-            <label for=""></label> 
-            {{ form.codigo }}
-                {% if form.errors.codigo %}
-                    <div class="error">
-                        {{ form.errors.codigo }}
-                    </div>
-                {% endif %}
-        </div>
 
-        <div>
-            <label for=""></label> 
-            {{ form.username }}
-                {% if form.errors.codigo %}
-                    <div class="error">
-                        {{ form.errors.username }}
-                    </div>
-                {% endif %}
-        </div>
+        {{ form.codigo }}
+            {% if form.errors.codigo %}
+                <div class="error">
+                    {{ form.errors.codigo }}
+                </div>
+            {% endif %}
 
-        <div>
-            <label for=""></label> 
-            {{ form.email }}
-                {% if form.errors.codigo %}
-                    <div class="error">
-                        {{ form.errors.email }}
-                    </div>
-                {% endif %}
-        </div>
+        {{ form.username }}
+            {% if form.errors.codigo %}
+                <div class="error">
+                    {{ form.errors.username }}
+                </div>
+            {% endif %}
 
-        <div>
-            <label for=""></label> 
-            {{ form.password1 }}
-                {% if form.errors.codigo %}
-                    <div class="error">
-                        {{ form.errors.password1 }}
-                    </div>
-                {% endif %}
-        </div>
+        {{ form.email }}
+            {% if form.errors.codigo %}
+                <div class="error">
+                    {{ form.errors.email }}
+                </div>
+            {% endif %}
 
-        <div>
-            <label for=""></label> 
-            {{ form.password2 }}
-                {% if form.errors.codigo %}
-                    <div class="error">
-                        {{ form.errors.password2 }}
-                    </div>
-                {% endif %}
-        </div>
+        {{ form.password1 }}
+            {% if form.errors.codigo %}
+                <div class="error">
+                    {{ form.errors.password1 }}
+                </div>
+            {% endif %}
 
-        <div>
-            <label for=""></label> 
-            {{ form.rol }}
-                {% if form.errors.codigo %}
-                    <div class="error">
-                        {{ form.errors.rol }}
-                    </div>
-                {% endif %}
-        </div>
+        {{ form.password2 }}
+            {% if form.errors.codigo %}
+                <div class="error">
+                    {{ form.errors.password2 }}
+                </div>
+            {% endif %}
 
-        <div>
-            <label for="" id="label-foto">Foto de perfil</label>
-            {{ form.imagen }}
-        </div>
+        {{ form.rol }}
+            {% if form.errors.codigo %}
+                <div class="error">
+                    {{ form.errors.rol }}
+                </div>
+            {% endif %}
 
-        <button type="submit" class="botons">Registrar</button>
+        {{ form.imagen }}
+
         <a href="/codigo"><input class="botons" type="submit" value="Siguiente"></a>
         <p><a href="/index">Volver</a></p>
     </form>
