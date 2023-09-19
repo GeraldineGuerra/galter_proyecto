@@ -11,25 +11,16 @@
     <header>
         <img class="logo" src="/Galter/Appgalter/img/logo.png" alt="">
     </header>
-<<<<<<< HEAD
     
     <form action="/iniciarSesion/" method="post" enctype="multipart/form-data" class="form">
         <h4>Iniciar Sesion</h4>
         {% csrf_token %}
-
-=======
-    <form action="/iniciarSesion/" method="post" class="form">
-        <h4>Iniciar Sesion</h4>
-        {% csrf_token %}
->>>>>>> 3ac4fa8dd02759d35568a58a20153c3b72a53286
         {% if form.errors %}
             <script>
                 var errorMessage = "{% for field in form %}{% for error in field.errors %}{{ error }}{% if not forloop.last %}, {% endif %}{% endfor %}{% endfor %}";
                 alert("Errores en el formulario: " + errorMessage);
             </script>
         {% endif %}
-
-<<<<<<< HEAD
         <div>
             <label for=""></label> 
             {{ form.username }}
@@ -49,21 +40,6 @@
                     </div>
                 {% endif %}
         </div>
-=======
-        {{ form.username }}
-            {% if form.errors.username %}
-                <div class="error">
-                    {{ form.errors.username }}
-                </div>
-            {% endif %}
-
-        {{ form.password }}
-            {% if form.errors.password %}
-                <div class="error">
-                    {{ form.errors.password }}
-                </div>
-            {% endif %}
->>>>>>> 3ac4fa8dd02759d35568a58a20153c3b72a53286
         <button type="submit" class="botons" id="submitBtn">Iniciar Sesion</button>
         <p><a href="/index">Volver</a></p>
     </form>
