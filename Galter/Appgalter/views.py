@@ -258,7 +258,25 @@ class listarMaterial(ListView):
         #     }) 
         datosmate=list(datos)
         #return JsonResponse(datos_material, safe=False)
-        return render(request, 'listarMate.html',{'datos': datosmate})
+        return render(request, 'listarMate.html',{'datosM': datosmate})
+    
+
+
+
+class listarMateriaal(View):
+    def get(self,request):
+        datos=material.objects.all()
+        datos_material=[]
+        for i in datos:
+            datos_material.append({ 
+                'codi_mate':i.codi_mate,
+                'nomb_mate':i.nomb_mate,
+                'cant_mate':i.cant_mate,
+                'proveedor_mate':i.proveedor_mate,
+            })
+        return JsonResponse(datos_material, safe=False)
+
+
         
         
 
