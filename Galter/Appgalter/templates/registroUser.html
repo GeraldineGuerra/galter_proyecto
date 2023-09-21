@@ -30,42 +30,61 @@
                 </div>
             {% endif %}
 
-        {{ form.username }}
-            {% if form.errors.codigo %}
-                <div class="error">
-                    {{ form.errors.username }}
-                </div>
-            {% endif %}
+        <div>
+            <label for=""></label> 
+            {{ form.username }}
+                {% if form.errors.codigo %}
+                    <div class="error">
+                        {{ form.errors.username }}
+                    </div>
+                {% endif %}
+        </div>
 
-        {{ form.email }}
-            {% if form.errors.codigo %}
-                <div class="error">
-                    {{ form.errors.email }}
-                </div>
-            {% endif %}
+        <div>
+            <label for=""></label> 
+            {{ form.email }}
+                {% if form.errors.codigo %}
+                    <div class="error">
+                        {{ form.errors.email }}
+                    </div>
+                {% endif %}
+        </div>
 
-        {{ form.password1 }}
-            {% if form.errors.codigo %}
-                <div class="error">
-                    {{ form.errors.password1 }}
-                </div>
-            {% endif %}
+        <div>
+            <label for=""></label> 
+            {{ form.password1 }}
+                {% if form.errors.codigo %}
+                    <div class="error">
+                        {{ form.errors.password1 }}
+                    </div>
+                {% endif %}
+        </div>
 
-        {{ form.password2 }}
-            {% if form.errors.codigo %}
-                <div class="error">
-                    {{ form.errors.password2 }}
-                </div>
-            {% endif %}
+        <div>
+            <label for=""></label> 
+            {{ form.password2 }}
+                {% if form.errors.codigo %}
+                    <div class="error">
+                        {{ form.errors.password2 }}
+                    </div>
+                {% endif %}
+        </div>
 
-        {{ form.rol }}
-            {% if form.errors.codigo %}
-                <div class="error">
-                    {{ form.errors.rol }}
-                </div>
-            {% endif %}
+        <div>
+            <label for=""></label> 
+            {{ form.rol }}
+                {% if form.errors.codigo %}
+                    <div class="error">
+                        {{ form.errors.rol }}
+                    </div>
+                {% endif %}
+        </div>
 
-        {{ form.imagen }}
+        <div>
+            <label for="" id="label-foto">Foto de perfil</label>
+            {{ form.imagen }}
+        </div>
+  
 
         <a href="/codigo"><input class="botons" type="submit" value="Siguiente"></a>
         <p><a href="/index">Volver</a></p>

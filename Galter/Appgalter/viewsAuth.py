@@ -1,7 +1,11 @@
+import jwt
 import json
 from .forms import *
 from typing import *
 from .models import *
+from datetime import *
+from django.conf import *
+from django.http import *
 from django.views import *
 from django.shortcuts import *
 from django.contrib.auth import *
@@ -19,15 +23,16 @@ class RegistrarUsuarioView(View):
         return super().dispatch(request, *args, **kwargs)
 
     def post(self, request):
-        form = UserForm()  # Definir form con un valor predeterminado
+        form = UserForm(request.POST)  # Definir form con un valor predeterminado
         if request.method == 'POST':
-            print("en el metodod")
+            print("en el metodo")
             #if request.headers.get('content-type') == 'application/json':
             if 'application/json' in request.headers.get('content-type', ''):
                 print("en el json")
                 self.handle_flutter_data(request)
+                print("EN FLUTTER")
             else:
-                print("no json")
+                print("en django")
                 form = UserForm(request.POST)
                 if form.is_valid():
                     print("form valid")
@@ -43,7 +48,7 @@ class RegistrarUsuarioView(View):
                         messages.success(request, 'registrado desde html')
                         return redirect("iniciar_sesion")
                 else:
-                    print("EERRR")
+                    print("EERRR", form.errors)
                     messages.error(request, 'Error al registrar el usuario desde formulario HTML.')
         else:
             print("no metodo")
@@ -76,84 +81,130 @@ class IniciarSesionView(View):
         form = LoginForm()
         return render(request, 'iniciosesion.html', {'form':form})
     
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        if request.method.lower() == "get":
+            return self.get(request, *args, **kwargs)
+        elif request.method.lower() == "post":
+            return self.post(request, *args, **kwargs)
+    
     def post(self, request):
-        form = LoginForm(data=request.POST)
+        accept_header = request.META.get('HTTP_ACCEPT', '')
+        print("*********************")
 
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            datt = authenticate(username = username, password=password)
+        if 'application/json' in accept_header:
+            print("en json")
+            try:
+                json_data = json.loads(request.body)
+                username = json_data.get('username')
+                password = json_data.get("password")
+                user = authenticate(username = username, password = password)
 
-            if datt is not None:
-                login(request, datt)
-                if datt.rol == 'admin':
-                    print('registrado rol')
-                    return redirect('menus')
+                if user is not None:
+                    print("json validation")
+                    login(request, user)
+
+                    if user.rol == 'admin':
+                        response_data ={
+                            'message' : 'Inicio de Sesion',
+                            "user_id" : user.codigo_id,
+                            "username" : user.username,
+                            "rol" : user.rol,
+                        }
+                        return JsonResponse(response_data)
+                    else:
+                        return JsonResponse({'error': 'es empleado'}, status = 400)
                 else:
-                    print('error rol')
-                    form.add_error(None, 'Credenciales inválidas. Por favor, intenta nuevamente.')
+                    return JsonResponse({'error' : 'Datos incorrectos'}, status = 400)
+            
+            except json.JSONDecodeError:
+                return HttpResponseBadRequest('Invalid JSON data')
+        else:
+            form = LoginForm(data = request.POST)
+
+            if form.is_valid():
+                print("vvvvvvvvvvvvv")
+                username = form.cleaned_data.get('username')
+                password = form.cleaned_data.get('password')
+                user = authenticate(username=username, password=password)
+
+                if user is not None:
+                    login(request, user)
+                    if user.rol == "admin":
+                        return redirect("menus")
+                    else:
+                        return JsonResponse({'message' : 'Inicio de sesion'})
+                else:
+                    return JsonResponse({'error' : 'Datos incorrectos'}, status = 400)
+            else:
+                return JsonResponse({'error' : 'Formularion incorrecto'}, status = 400)
+                    
 
 
-""" @method_decorator(login_required(login_url='iniciar_sesion'), name='dispatch')
 class PerfilUsuarioView(View):
     template_name = 'actUsuario.html'
 
+    def generate_token(self, user):
+        token_options = {
+            'iat' : datetime.utcnow(),
+            'exp' : datetime.utcnow() + timedelta(hours = 1),
+            'user_id' : user.codigo_id,
+        }
+        token = jwt.encode(token_options, settings.SECRET_KEY, algorithm = 'HS256')
+        return token
+    
+    @method_decorator(login_required(login_url='iniciar_sesion'))
     def get(self, request):
         try:
+            user_ = User.objects.get(codigo_id=request.user.codigo_id)
             userr = request.user
-            usuarioo = usuario.objects.get(codi_usuario=request.user.codigo_id)
-            print(userr.imagen)
-        except usuario.DoesNotExist:
-            messages.error(request, 'No se encontraron los datos del usuario.')
-            return redirect('iniciar_sesion')
+            user_data = {
+                'password': user_.password,
+                'username': user_.username,
+                'rol':user_.rol,
+                'imagen':user_.imagen,
+            }
+            accept_header = request.META.get('HTTP_ACCEPT', '')
 
-        form = UpdateUser(instance=usuarioo)
-        return render(request, self.template_name, {'form': form, 'usuario': usuarioo, 'user':userr})
+            if 'application/json' in accept_header:
+                token = self.generate_token(request.user)
+                return JsonResponse({'token':token, **user_data})
+            else:
+                form = UpdateUser(instance = userr)
+                return render(request, self.template_name, {'form': form, 'user':userr})
+        except User.DoesNotExist:
+            return JsonResponse({'error' : 'No se encontraron datos del User'}, status = 400)
 
+
+    @method_decorator(login_required(login_url='iniciar_sesion'))
     def post(self, request):
         try:
-            usuarioo = usuario.objects.get(codi_usuario=request.user.codigo_id)
-        except usuario.DoesNotExist:
-            messages.error(request, 'No se encontraron los datos del usuario.')
-            return redirect('iniciar_sesion')
-
-        form = UpdateUser(request.POST, instance=usuarioo)
-
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Cambios guardados correctamente.')
-            return redirect('menus')
-
-        return render(request, self.template_name, {'form': form, 'usuario': usuarioo}) """
-
-@method_decorator(login_required(login_url='iniciar_sesion'), name='dispatch')
-class PerfilUsuarioView(View):
-    template_name = 'actUsuario.html'
-
-    def get(self, request):
-        try:
-            userr = request.user
-            print(userr.imagen)
+            user_ = User.objects.get(codigo_id=request.user.codigo_id)
         except User.DoesNotExist:
             messages.error(request, 'No se encontraron los datos del user.')
             return redirect('menus')
 
-        form = UpdateUser(instance=userr)
-        return render(request, self.template_name, {'form': form, 'user':userr})
-
-    def post(self, request):
-        try:
-            userr = User.objects.get(codigo_id=request.user.codigo_id)
-        except User.DoesNotExist:
-            messages.error(request, 'No se encontraron los datos del user.')
-            return redirect('menus')
-
-        form = UpdateUser(request.POST, instance=userr)
+        form = UpdateUser(request.POST, instance=user_)
 
         if form.is_valid():
             print("form valid")
-            if 'imagen' in request.FILES:
-                print("imagen en diccionario")
+            form.save()
+            messages.success(request, 'Cambios guardados')
+            accept_header = request.META.get('HTTP_ACCEPT', '')
+
+            if 'application/json' in accept_header:
+                user_data = {
+                    'password': user_.password,
+                    'username': user_.username,
+                    'rol':user_.rol,
+                    'imagen':user_.imagen,
+                }
+                return JsonResponse(user_data)
+            else:
+                return redirect('update_usuario')
+        return render(request, self.template_name, {'form': form, 'user': user_}) 
+
+"""                 print("imagen en diccionario")
                 imagen_file = request.FILES['imagen']
                 user_instance = form.save(commit=False)
                 user_instance.imagen = imagen_file
@@ -167,7 +218,7 @@ class PerfilUsuarioView(View):
             print("ERROR")
             messages.error(request,"Error al actualizar user")
 
-        return render(request, self.template_name, {'form': form, 'user': userr})
+        return render(request, self.template_name, {'form': form, 'user': userr}) """
 
 def frmUpdateUser(request):
     return render(request, "actUsuario.html")
