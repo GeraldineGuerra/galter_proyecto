@@ -45,6 +45,17 @@ urlpatterns = [
     path('frmPedido',views.formularioInsertarPedi, name='resgistrarPedi'),
 
 
+    #actualizar
+    path('actualizar_prod/', ActualizarProducto.as_view(), name='actualizar_producto'),
+
+
+
+    #Eliminar
+    path('eliminar_prod/', EliminarProducto.as_view(), name='eliminar_producto'),
+    path('eliminar_mate/',EliminarMaterial.as_view(), name='eliminar_material'),
+
+
+
 
 
     path('index', views.index, name='principal'),

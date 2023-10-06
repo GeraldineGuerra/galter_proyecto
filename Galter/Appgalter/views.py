@@ -304,6 +304,34 @@ def formularioInsertarMate(request):
 
 
 
+class EliminarMaterial(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def delete(self, request):
+        try:
+            datos = json.loads(request.body)
+            codi_mate = datos.get('codi_mate')
+            mate = material.objects.get(codi_mate=codi_mate)
+            mate.delete()
+            return JsonResponse({'mensaje': 'Material eliminado correctamente'})
+        except (json.JSONDecodeError, UnicodeDecodeError, producto.DoesNotExist):
+            return JsonResponse({'error': 'Material no encontrado o error en la decodificación'})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 class listarProducto(ListView):
@@ -362,9 +390,55 @@ def formularioInsertarProd(request):
 
 # def insertarProducto(request):
 #     return render(request,"insertarProd.html")
+
+
+
+
+
+class ActualizarProducto(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def put(self, request):
+        try:
+            datos = json.loads(request.body)
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            return JsonResponse({"error": "Error en la decodificación"})
+
+        codi_prod = datos.get('codi_prod')
+        # Verificamos si el producto existe
+        try:
+            prod = producto.objects.get(codi_prod=codi_prod)
+        except producto.DoesNotExist:
+            return JsonResponse({'error': 'Producto no encontrado'})
+
+        # Actualizamos los campos del producto con los nuevos valores
+        prod.nomb_prod = datos.get('nomb_prod', prod.nomb_prod)
+        prod.tiempo_prod = datos.get('tiempo_prod', prod.tiempo_prod)
+        prod.long_prod = datos.get('long_prod', prod.long_prod)
+        prod.material_prod = datos.get('material_prod', prod.material_prod)
+        prod.prec_prod = datos.get('prec_prod', prod.prec_prod)
+        prod.save()
+
+        return JsonResponse({'mensaje': 'Producto actualizado correctamente'})
     
  
 
+class EliminarProducto(View):
+    @method_decorator(csrf_exempt)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def delete(self, request):
+        try:
+            datos = json.loads(request.body)
+            codi_prod = datos.get('codi_prod')
+            prod = producto.objects.get(codi_prod=codi_prod)
+            prod.delete()
+            return JsonResponse({'mensaje': 'Producto eliminado correctamente'})
+        except (json.JSONDecodeError, UnicodeDecodeError, producto.DoesNotExist):
+            return JsonResponse({'error': 'Producto no encontrado o error en la decodificación'})
 
 
 
